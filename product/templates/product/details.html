@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <img src="{{ product.image.url }}">
+<h1>{{ product.name }}</h1>
+<h2>
+<a href="{{ product.category.get_absolute_url }}">
+{{ product.category }}
+</a>
+</h2>
+<p>${{ product.price }}</p>
+<form action="{% url 'cart:cart_add' product.id %}" method="post">
+    {{ cart_product_form }}
+{% csrf_token %}
+<input type="submit" value="Add to cart">
+</form>
+{{ product.description|linebreaks }}
+    </div>
+</body>
+</html>

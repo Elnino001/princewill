@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div>
+            <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+            {% for product in products %}
+            <div>
+                <a href="{{ product.get_absolute_url }}">
+                    {% if product.image %}
+                  <img src="{{ product.image.url }}">
+                  {%else %}
+                  <img src="{% static 'img/no_image.png' %}" alt="">
+                  {% endif %}
+                  </a>
+            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            <br>
+            ${{ product.price }}
+            </div>
+            {% endfor %}
+        </div>
+</body>
+</html>
